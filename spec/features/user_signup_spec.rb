@@ -5,4 +5,6 @@ feature 'user signup' do
     expect(page.status_code).to eq 200
   end
 
+  # sanity check
+
 end
