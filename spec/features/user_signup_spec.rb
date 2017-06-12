@@ -12,6 +12,7 @@ feature 'user signup' do
     fill_in 'email', with: 'emails@email.com'
     click_button 'submit'
     expect(page).to have_content('Hello, Jenny!')
+    expect(User.first.name).to eq('Charlotte')
   end
 
 end
