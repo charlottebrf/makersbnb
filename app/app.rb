@@ -3,6 +3,10 @@ require "sinatra/base"
 class Makersbnb < Sinatra::Base
   enable :sessions
 
+  get "/signup" do
+    erb :signup
+  end
+
   get "/spaces/new" do
     erb :new_space
   end
