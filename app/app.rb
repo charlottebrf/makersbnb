@@ -13,6 +13,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get "/spaces" do
+    @new_space = session[:new_space]
     erb :index
   end
 end
