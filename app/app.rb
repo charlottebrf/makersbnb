@@ -7,6 +7,15 @@ class Makersbnb < Sinatra::Base
     erb :signup
   end
 
+  post "/users/new" do
+    erb :signup
+    redirect to "/home"
+  end
+
+  get "/home" do
+    erb :home
+  end
+
   get "/spaces/new" do
     erb :new_space
   end
@@ -19,4 +28,6 @@ class Makersbnb < Sinatra::Base
   get "/spaces" do
     erb :index
   end
+
+  run! if app_file == $0
 end
