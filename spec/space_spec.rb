@@ -18,4 +18,17 @@ feature "Listing Spaces" do
     expect(Space.last.name).to eq('Maldives')
   end
 
+  scenario "I can add a space to a database" do
+    visit("/spaces")
+    click_button("make_new_space")
+    fill_in 'new_space', with: 'Maldives'
+    click_button('submit')
+    visit("/spaces")
+    click_button("make_new_space")
+    fill_in 'new_space', with: 'Room 101'
+    click_button('submit')
+    expect(page).to have_content('Maldives')
+    expect(page).to have_content('Room 101')
+  end
+
 end
