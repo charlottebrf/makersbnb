@@ -17,4 +17,16 @@ feature "Listing Spaces" do
       expect(page).to have_content "50"
     end
 
+    scenario "I can add a space to a database" do
+      new_space("Maldives")
+      expect(Space.last.name).to eq('Maldives')
+    end
+
+    scenario "I can add a space to a database" do
+      new_space("Maldives")
+      new_space("Room 101")
+      expect(page).to have_content('Maldives')
+      expect(page).to have_content('Room 101')
+    end
+
 end

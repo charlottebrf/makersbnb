@@ -1,5 +1,3 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
 
 class User
   include DataMapper::Resource
@@ -9,8 +7,5 @@ class User
   property :username, String
   property :email, String, required: true
 
+  has n, :spaces, through: Resource
 end
-
-DataMapper.setup(:default, "postgres://localhost/makersbnb_test")
-DataMapper.finalize
-DataMapper.auto_migrate!
