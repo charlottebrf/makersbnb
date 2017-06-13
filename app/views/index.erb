@@ -2,3 +2,12 @@
 <form method="get" action="/spaces/new">
   <input type="submit" id="make_new_space" value="Make New Space">
 </form>
+
+<ul id='spaces'>
+  <% @spaces.each do |space| %>
+    <li>
+      Space: <%= space.name %>
+     
+    </li>
+  <% end %>
+</ul>

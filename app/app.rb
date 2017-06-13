@@ -24,12 +24,13 @@ class Makersbnb < Sinatra::Base
   end
 
   post "/spaces/new" do
+    p params
     Space.create(name: params[:name])
     redirect "/spaces"
   end
 
   get "/spaces" do
-    # @new_space = Space.first.name
+    @spaces = Space.all
     erb :index
   end
 

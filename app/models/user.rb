@@ -11,7 +11,7 @@ class User
   property :name, String
   property :username, String
   property :email, String, required: true
-  has n, :spaces
+  # has n, :spaces
 
 end
 
