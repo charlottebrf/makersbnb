@@ -1,8 +1,9 @@
 
-ENV["RACK_ENV"] = "test"
+# ENV["RACK_ENV"] = "test"
 
 require 'capybara/rspec'
 require_relative "../app/app"
+require './app/models/user.rb'
 
 Capybara.app = Makersbnb
 

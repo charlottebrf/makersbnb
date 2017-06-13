@@ -15,4 +15,5 @@ feature "Listing Spaces" do
     fill_in 'new_space', with: 'Maldives'
     expect(Space.first.name).to eq('Maldives')
   end
+
 end
