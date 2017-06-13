@@ -14,7 +14,8 @@ feature "Listing Spaces" do
     visit("/spaces")
     click_button("make_new_space")
     fill_in 'new_space', with: 'Maldives'
-    expect(Space.first.name).to eq('Maldives')
+    click_button('submit')
+    expect(Space.last.name).to eq('Maldives')
   end
 
 end

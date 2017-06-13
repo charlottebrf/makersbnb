@@ -1,15 +1,26 @@
 
-# ENV["RACK_ENV"] = "test"
+ENV['RACK_ENV'] = 'test'
 
 require 'capybara/rspec'
-require_relative "../app/app"
-require_relative './app/models/user.rb'
-require_relative './app/models/space.rb'
+require 'database_cleaner'
+require_relative '../app/app'
+require_relative '../app/datamapper_setup'
 
 Capybara.app = Makersbnb
 
-
 RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   config.expect_with :rspec do |expectations|
 
@@ -21,7 +32,5 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
 end

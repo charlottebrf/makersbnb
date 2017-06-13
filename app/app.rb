@@ -1,3 +1,5 @@
+ENV["RACK_ENV"] ||= 'development'
+
 require 'sinatra/base'
 require_relative './datamapper_setup'
 
@@ -24,7 +26,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/spaces/new' do
-    user = User.first
+    user = User.create(name: 'Sgt. Duck')
     user.spaces << Space.create(name: params[:new_space])
     user.save
     redirect '/spaces'
