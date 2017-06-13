@@ -1,37 +1,39 @@
-require "sinatra/base"
-require_relative "./models/user.rb"
+require 'sinatra/base'
+require_relative './datamapper_setup'
 
 class Makersbnb < Sinatra::Base
   enable :sessions
 
-  get "/signup" do
+  get '/signup' do
     erb :signup
   end
 
-  post "/users/new" do
+  post '/users/new' do
     User.create(name: params[:name], username: params[:username], email: params[:email])
     erb :signup
-    redirect to "/home"
+    redirect to '/home'
   end
 
-  get "/home" do
+  get '/home' do
     @user = User.first
     erb :home
   end
 
-  get "/spaces/new" do
+  get '/spaces/new' do
     erb :new_space
   end
 
-  post "/spaces/new" do
-    Space.create(name: params[:name])
-    redirect "/spaces"
+  post '/spaces/new' do
+    user = User.first
+    user.spaces << Space.create(name: params[:new_space])
+    user.save
+    redirect '/spaces'
   end
 
-  get "/spaces" do
-    # @new_space = Space.first.name
+  get '/spaces' do
+    @spaces = Space.all
     erb :index
   end
 
-  run! if app_file == $0
+  run! if $PROGRAM_NAME == __FILE__
 end
