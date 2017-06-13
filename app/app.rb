@@ -26,12 +26,14 @@ class Makersbnb < Sinatra::Base
   post "/spaces/new" do
     session[:name] = params[:name]
     session[:description] = params[:description]
+    session[:price] = params[:price]
     redirect "/spaces"
   end
 
   get "/spaces" do
     @new_space_name = session[:name]
     @new_space_description = session[:description]
+    @new_space_price = session[:price]
     erb :index
   end
 
