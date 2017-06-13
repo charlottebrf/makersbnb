@@ -1,17 +1,16 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
-require_relative 'space.rb'
+require_relative 'user.rb'
 
-class User
+
+class Space
   include DataMapper::Resource
 
-  # has n, :spaces, through: Resource
+  # has 1, :users, {:through=>DataMapper::Resource}
 
   property :id, Serial
   property :name, String
-  property :username, String
-  property :email, String, required: true
-  has n, :spaces
+  belongs_to :user
 
 end
 

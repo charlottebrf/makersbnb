@@ -3,7 +3,8 @@
 
 require 'capybara/rspec'
 require_relative "../app/app"
-require './app/models/user.rb'
+require_relative './app/models/user.rb'
+require_relative './app/models/space.rb'
 
 Capybara.app = Makersbnb
 

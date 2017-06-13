@@ -12,6 +12,7 @@ feature "Listing Spaces" do
 
   scenario "I can add a space to a database" do
     visit("/spaces")
+    click_button("make_new_space")
     fill_in 'new_space', with: 'Maldives'
     expect(Space.first.name).to eq('Maldives')
   end
