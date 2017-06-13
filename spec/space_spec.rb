@@ -1,13 +1,11 @@
+require 'web_helper'
+
 feature "Listing Spaces" do
 
-  scenario "I can create a new Space" do
+    scenario "I can name a new Space" do
+      new_space
+      expect(page).to have_content "Amazingly Romantic Shed"
 
-    visit("/spaces")
-    expect(page).to_not have_content("Space #1")
-    click_button("make_new_space")
-    click_button("submit")
-    expect(page).to have_content("Space #1")
-
-  end
+    end
 
 end
