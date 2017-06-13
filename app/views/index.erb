@@ -2,6 +2,8 @@
   <h2><%=@new_space_name%></h2>
   <br>
   <%=@new_space_description%>
+  <br>
+  <%="£#{@new_space_price} per night" %>
 </article>
 <form method="get" action="/spaces/new">
   <input type="submit" id="make_new_space" value="Make New Space">

@@ -12,4 +12,9 @@ feature "Listing Spaces" do
       expect(page).to have_content "A shed that is romantic to an amazing degree."
     end
 
+    scenario "I can provide a price for a new Space" do
+      new_space
+      expect(page).to have_content "50"
+    end
+
 end
