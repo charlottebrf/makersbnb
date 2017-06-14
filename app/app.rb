@@ -41,7 +41,7 @@ class Makersbnb < Sinatra::Base
 
   get '/home' do
     @user = current_user
-    erb :home
+    erb :'users/home'
   end
 
   get '/spaces/new' do
@@ -49,8 +49,10 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/spaces/new' do
-    Space.create(name: params[:new_space],
-                 owner: session[:user_id])
+    Space.create(name: params[:name],
+                 owner: session[:user_id],
+                 description: params[:description],
+                 price: params[:price])
     redirect '/spaces'
   end
 
