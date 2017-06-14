@@ -42,4 +42,14 @@ feature 'Booking Spaces' do
     expect(page).to have_content 'You Have Requested Amazingly Romantic Shed'
   end
 
+feature 'Adding dates to spaces' do
+
+  scenario 'I can see a date field' do
+    sign_up
+    visit '/spaces'
+    click_button 'make_new_space'
+    expect(page).to have_field 'date'
+  end
+end
+
 end
