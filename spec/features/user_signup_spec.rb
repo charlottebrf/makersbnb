@@ -10,6 +10,8 @@ feature 'user signup' do
     fill_in 'name', with: 'Jenny'
     fill_in 'username', with: 'wemmm'
     fill_in 'email', with: 'emails@email.com'
+    fill_in 'password', with: 'password'
+    fill_in 'password_confirmation', with: 'password'
     click_button 'submit'
     expect(page).to have_content('Hello, Jenny!')
     expect(User.first.name).to eq('Jenny')
