@@ -4,8 +4,8 @@ class Space
 
   property :id, Serial
   property :name, String
+  property :owner, Serial
   property :description, Text
   property :price, Integer
 
-  has 1, :user, through: Resource
 end

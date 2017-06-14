@@ -1,1 +1,17 @@
-<p><%="Hello, #{@user.name}!"%></p>
+<% if @user %>
+  <p><%="Hello, #{@user.name}!"%></p>
+  <form action="/sign_out" method="post">
+    <input type="submit" value="Log Out">
+  </form>
+<% else %>
+  <p>Please sign in...</p>
+  <form action="/sign_in" method="post">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" value="Log In">
+  </form>
+    <p>or...</p>
+  <form action="/signup" method="get">
+      <input type="submit" value="Sign Up">
+    </form>
+<% end %>
