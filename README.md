@@ -35,3 +35,21 @@ As a user,
 So I can show people how much it costs,
 I want to provide a price per night for my space.
 ```
+
+```
+As a user,
+So I can control when bookings are made,
+I want to list available dates for my space.
+```
+
+```
+As a user,
+So I have somewhere to stay,
+I want to request a space for one night.
+```
+
+```
+As a user,
+So I can screen my guests,
+I want to approve requests to stay at my space.
+```
