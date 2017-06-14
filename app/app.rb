@@ -23,7 +23,7 @@ class Makersbnb < Sinatra::Base
     end
     redirect '/home'
   end
-  
+
   post '/sign_out' do
     session[:user_id] = nil
     redirect '/home'
@@ -49,9 +49,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/spaces/new' do
-    user = User.create(name: 'Sgt. Duck')
-    user.spaces << Space.create(name: params[:new_space])
-    user.save
+    Space.create(name: params[:new_space],
+                 owner: session[:user_id])
     redirect '/spaces'
   end
 

@@ -4,6 +4,6 @@ class Space
 
   property :id, Serial
   property :name, String
+  property :owner, Serial
 
-  has 1, :user, through: Resource
 end

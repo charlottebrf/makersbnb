@@ -14,8 +14,6 @@ class User
   property :password_digest, Text
   property :email, String, required: true
 
-  has n, :spaces, through: Resource
-
   validates_presence_of     :password_confirmation
   validates_presence_of     :password
   validates_length_of       :password, min: 6
