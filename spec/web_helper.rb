@@ -8,3 +8,23 @@ def new_space(name = "Amazingly Romantic Shed", description = "A shed that is ro
   fill_in "price", with: price
   click_button("submit")
 end
+
+def sign_up(name = 'Jenny', username = 'wemmm',
+            email = 'emails@email.com',
+            password = 'password', password_confirmation = 'password')
+  visit '/signup'
+  fill_in 'name', with: name
+  fill_in 'username', with: username
+  fill_in 'email', with: email
+  fill_in 'password', with: password
+  fill_in 'password_confirmation', with: password_confirmation
+  click_button 'submit'
+
+end
+
+def sign_in(name = 'Jenny', password = 'password')
+  visit "/home"
+  fill_in 'username', with: username
+  fill_in 'password', with: password
+  click_button 'Log In'
+end

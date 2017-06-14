@@ -43,6 +43,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/home' do
+    @requested_space = Space.get(session[:space_id])
     @user = current_user
     erb :'users/home'
   end
@@ -62,6 +63,11 @@ class Makersbnb < Sinatra::Base
   get '/spaces' do
     @spaces = Space.all
     erb :'spaces/spaces_list'
+  end
+
+  post '/bookings/new' do
+    session[:space_id] = params[:requested_space_id]
+    redirect '/home'
   end
 
   run! if $PROGRAM_NAME == __FILE__
