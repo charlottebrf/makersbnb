@@ -22,9 +22,21 @@ def sign_up(name = 'Jenny', username = 'wemmm',
 
 end
 
-def sign_in(name = 'Jenny', password = 'password')
+def sign_in(username = 'wemmm', password = 'password')
   visit "/home"
   fill_in 'username', with: username
   fill_in 'password', with: password
   click_button 'Log In'
 end
+
+def request_space
+  sign_up
+  new_space
+  visit '/home'
+  click_button 'Log Out'
+  sign_up('Dave', 'dave')
+  visit '/spaces'
+  within 'li#1'
+  click_button 'request_space'
+end
+

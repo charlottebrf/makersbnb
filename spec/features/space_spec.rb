@@ -34,12 +34,14 @@ end
 feature 'Booking Spaces' do
 
   scenario 'I can request a space for one night' do
-    new_space
-    sign_up
-    visit '/spaces'
-    within 'li#1'
-    click_button 'request_space'
-    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed'
+    request_space
+    expect(page).to have_content 'You Have Requested: Amazingly Romantic Shed'
   end
 
+  scenario 'I recieve a request for approval' do
+    request_space
+    click_button 'Log Out'
+    sign_in
+    expect(page).to have_content 'Dave has requested Amazingly Romantic Shed'
+  end
 end

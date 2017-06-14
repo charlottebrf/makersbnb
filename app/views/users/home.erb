@@ -16,6 +16,18 @@
     </form>
 <% end %>
 
-<% if @requested_space %>
-  <p>You Have Requested <%= @requested_space.name%></p>
-<% end %>
+<% if @requested_spaces %>
+  <p>You Have Requested: 
+<ul>
+  <% @requested_spaces.each do |space| %>
+    <li class="space" id="<%=space.id%>">
+      <h2><%=space.name%></h2>
+      <br>
+      <%=space.description%>
+      <br>
+      <%="£#{space.price} per night" %>
+      <br>
+    </li>
+  <% end %>
+</ul>
+<%end%>
