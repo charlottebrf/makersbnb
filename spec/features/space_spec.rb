@@ -22,7 +22,7 @@ feature "Listing Spaces" do
       expect(Space.last.name).to eq('Maldives')
     end
 
-    scenario "I can add a space to a database" do
+    scenario "I can add multiple spaces" do
       new_space("Maldives")
       new_space("Room 101")
       expect(page).to have_content('Maldives')

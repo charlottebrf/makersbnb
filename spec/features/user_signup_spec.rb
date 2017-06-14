@@ -13,4 +13,9 @@ feature 'user signup' do
     expect(User.first.name).to eq('Jenny')
   end
 
+  scenario 'password is verified' do
+    incorrect_password_verification
+    expect(page).not_to have_content('Hello')
+  end
+
 end
