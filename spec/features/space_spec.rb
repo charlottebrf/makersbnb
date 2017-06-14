@@ -37,7 +37,7 @@ feature 'Booking Spaces' do
     new_space
     sign_up
     visit '/spaces'
-    within 'li#space ID: 1'
+    within 'li#1'
     click_button 'request_space'
     expect(page).to have_content 'You Have Requested Amazingly Romantic Shed'
   end

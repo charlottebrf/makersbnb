@@ -1,15 +1,15 @@
 <ul>
   <% @spaces.each do |space| %>
-    <li id='space ID: <%=space.id%>'>
+    <li class="space" id="<%=space.id%>">
       <h2><%=space.name%></h2>
       <br>
       <%=space.description%>
       <br>
       <%="£#{space.price} per night" %>
       <br>
-      <form action='/bookings/new' method="POST">
-        <input type='hidden' value='<%=space.id%>' name='requested_space_id'></input>
-        <input type='submit' value='Request Space' id='request_space'></input>
+      <form action="/bookings/new" method="POST">
+        <input type="hidden" value="<%=space.id%>" name="requested_space_id"></input>
+        <input type="submit" value="Request Space" id="request_space"></input>
       </form>
     </li>
   <% end %>
