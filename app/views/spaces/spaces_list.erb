@@ -1,8 +1,15 @@
 <ul>
   <% @spaces.each do |space| %>
-    <li><%= space.name %></li>
+    <li>
+      <h2><%=space.name%></h2>
+      <br>
+      <%=space.description%>
+      <br>
+      <%="£#{space.price} per night" %>
+    </li>
   <% end %>
 </ul>
+
 <form method="get" action="/spaces/new">
   <input type="submit" id="make_new_space" value="Make New Space">
 </form>

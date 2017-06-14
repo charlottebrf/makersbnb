@@ -13,7 +13,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/signup' do
-    erb :signup
+    erb :"users/signup"
   end
 
   post '/sign_in' do
@@ -30,6 +30,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/users/new' do
+<<<<<<< HEAD
     user = User.create(name: params[:name],
                 username: params[:username],
                 email: params[:email],
@@ -42,21 +43,39 @@ class Makersbnb < Sinatra::Base
   get '/home' do
     @user = current_user
     erb :home
+=======
+    User.create(name: params[:name], username: params[:username], email: params[:email])
+    erb :"users/signup"
+    redirect to '/home'
+  end
+
+  get '/home' do
+    @user = User.first
+    erb :"users/home"
+>>>>>>> 51256f2c44ba8eb57ef88ebc3274004b9b3a1772
   end
 
   get '/spaces/new' do
-    erb :new_space
+    erb :"spaces/new_space"
   end
 
+<<<<<<< HEAD
   post '/spaces/new' do
     Space.create(name: params[:new_space],
                  owner: session[:user_id])
     redirect '/spaces'
+=======
+  post "/spaces/new" do
+    user = User.create(name: 'Sgt. Duck')
+    user.spaces << Space.create(name: params[:name], description: params[:description], price: params[:price])
+    user.save
+    redirect "/spaces"
+>>>>>>> 51256f2c44ba8eb57ef88ebc3274004b9b3a1772
   end
 
-  get '/spaces' do
+  get "/spaces" do
     @spaces = Space.all
-    erb :index
+    erb :"spaces/spaces_list"
   end
 
   run! if $PROGRAM_NAME == __FILE__
