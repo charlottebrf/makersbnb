@@ -1,8 +1,9 @@
-ENV["RACK_ENV"] ||= 'development'
+ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require_relative './datamapper_setup'
 
+# This is the controller for Makersbnb
 class Makersbnb < Sinatra::Base
   enable :sessions
 
@@ -12,15 +13,17 @@ class Makersbnb < Sinatra::Base
     end
   end
 
+  get '/' do
+    redirect '/home'
+  end
+
   get '/signup' do
-    erb :"users/signup"
+    erb :'users/signup'
   end
 
   post '/sign_in' do
     user = User.authenticate(params[:username], params[:password])
-    if user
-      session[:user_id] = user.id
-    end
+    session[:user_id] = user.id if user
     redirect '/home'
   end
 
@@ -31,10 +34,10 @@ class Makersbnb < Sinatra::Base
 
   post '/users/new' do
     user = User.create(name: params[:name],
-                username: params[:username],
-                email: params[:email],
-                password: params[:password],
-                password_confirmation: params[:password_confirmation])
+                       username: params[:username],
+                       email: params[:email],
+                       password: params[:password],
+                       password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
     redirect '/home'
   end
@@ -45,7 +48,7 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/spaces/new' do
-    erb :"spaces/new_space"
+    erb :'spaces/new_space'
   end
 
   post '/spaces/new' do
@@ -56,9 +59,9 @@ class Makersbnb < Sinatra::Base
     redirect '/spaces'
   end
 
-  get "/spaces" do
+  get '/spaces' do
     @spaces = Space.all
-    erb :"spaces/spaces_list"
+    erb :'spaces/spaces_list'
   end
 
   run! if $PROGRAM_NAME == __FILE__
