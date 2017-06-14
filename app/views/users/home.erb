@@ -15,3 +15,7 @@
       <input type="submit" value="Sign Up">
     </form>
 <% end %>
+
+<% if @requested_space %>
+  <p>You Have Requested <%= @requested_space.name%></p>
+<% end %>

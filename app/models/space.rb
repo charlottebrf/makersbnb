@@ -4,7 +4,7 @@ class Space
 
   property :id, Serial
   property :name, String
-  property :owner, Serial
+  property :owner, Integer
   property :description, Text
   property :price, Integer
 
