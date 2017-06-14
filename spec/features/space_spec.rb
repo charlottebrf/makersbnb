@@ -30,3 +30,16 @@ feature "Listing Spaces" do
     end
 
 end
+
+feature 'Booking Spaces' do
+
+  scenario 'I can request a space for one night' do
+    new_space
+    sign_up
+    visit '/spaces'
+    within 'li#space ID: 1'
+    click_button 'request_space'
+    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed'
+  end
+
+end
