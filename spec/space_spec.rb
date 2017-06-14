@@ -1,34 +1,32 @@
+require 'web_helper'
+
 feature "Listing Spaces" do
 
-  scenario "I can create a new Space" do
+    scenario "I can name a new Space" do
+      new_space
+      expect(page).to have_content "Amazingly Romantic Shed"
+    end
 
-    visit("/spaces")
-    expect(page).to_not have_content("Space #1")
-    click_button("make_new_space")
-    click_button("submit")
-    expect(page).to have_content("Space #1")
+    scenario "I can describe a new Space" do
+      new_space
+      expect(page).to have_content "A shed that is romantic to an amazing degree."
+    end
 
-  end
+    scenario "I can provide a price for a new Space" do
+      new_space
+      expect(page).to have_content "50"
+    end
 
-  scenario "I can add a space to a database" do
-    visit("/spaces")
-    click_button("make_new_space")
-    fill_in 'new_space', with: 'Maldives'
-    click_button('submit')
-    expect(Space.last.name).to eq('Maldives')
-  end
+    scenario "I can add a space to a database" do
+      new_space("Maldives")
+      expect(Space.last.name).to eq('Maldives')
+    end
 
-  scenario "I can add a space to a database" do
-    visit("/spaces")
-    click_button("make_new_space")
-    fill_in 'new_space', with: 'Maldives'
-    click_button('submit')
-    visit("/spaces")
-    click_button("make_new_space")
-    fill_in 'new_space', with: 'Room 101'
-    click_button('submit')
-    expect(page).to have_content('Maldives')
-    expect(page).to have_content('Room 101')
-  end
+    scenario "I can add a space to a database" do
+      new_space("Maldives")
+      new_space("Room 101")
+      expect(page).to have_content('Maldives')
+      expect(page).to have_content('Room 101')
+    end
 
 end
