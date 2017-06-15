@@ -57,16 +57,27 @@ feature 'Booking Spaces' do
     click_button 'Log Out'
     sign_in
     expect(page).to have_button 'Deny Request'
-  end
+end
 
-  # scenario 'I can deny a booking request' do
-  #   request_space
-  #   click_button 'Log Out'
-  #   sign_in
-  #   expect(page).to have_button 'Approve Request'
-  #   click_button ''
-  #   sleep(10)
-  #   p Booking.get(2)
-  #   # expect(request.approved).to eq true
-  # end
+  scenario 'Requests that are approved... are approved!', :js => true do
+    visit('/home')
+    click_button('Sign Up')
+    fill_in 'name', with: 'Michael'
+    fill_in 'username', with: 'mikejacobson'
+    fill_in 'email', with: 'michael.jacobson89@gmail.com'
+    fill_in 'password', with: 'password'
+    fill_in 'password_confirmation', with: 'password'
+    click_button('submit')
+    click_button('View Spaces')
+    click_button('Make New Space')
+    fill_in 'name', with: "Mike's Space"
+    fill_in 'description', with: "It's ace!"
+    fill_in 'price', with: 200
+    click_button('submit')
+    click_button('Request Space')
+    click_button('Approve Request')
+    sleep(5)
+    request = Booking.last
+    expect(request.approved).to eq true
+  end
 end

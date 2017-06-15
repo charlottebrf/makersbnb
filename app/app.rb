@@ -13,6 +13,10 @@ class Makersbnb < Sinatra::Base
     end
   end
 
+  before do
+    current_user
+  end
+
   get '/' do
     redirect '/home'
   end
@@ -73,7 +77,6 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/bookings/new' do
-    current_user
     Booking.create(user_id: @current_user.id,
                    space_id: params[:requested_space_id])
     redirect '/home'

@@ -20,6 +20,9 @@
   <form action="/sign_out" method="post">
     <input type="submit" value="Log Out">
   </form>
+  <form action="/spaces" method="get">
+    <input type="submit" value="View Spaces">
+  </form>
 
     <ul>
       <% @bookings_pending_approval.each do |booking| %>

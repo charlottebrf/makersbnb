@@ -3,6 +3,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'web_helper'
 require 'capybara/rspec'
+require 'selenium-webdriver'
 require 'database_cleaner'
 require_relative '../app/app'
 require_relative '../app/datamapper_setup'

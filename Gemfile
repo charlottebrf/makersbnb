@@ -11,9 +11,11 @@ gem 'sinatra'
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'geckodriver-helper'
   gem 'rake'
   gem 'rspec'
   gem 'rubocop'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
 end
