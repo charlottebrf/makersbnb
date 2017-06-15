@@ -44,4 +44,27 @@ feature 'Booking Spaces' do
     sign_in
     expect(page).to have_content 'Dave has requested Amazingly Romantic Shed'
   end
+
+  scenario 'I can approve a booking request' do
+    request_space
+    click_button 'Log Out'
+    sign_in
+    expect(page).to have_button 'Approve Request'
+  end
+
+  scenario 'I can deny a booking request' do
+    request_space
+    click_button 'Log Out'
+    sign_in
+    expect(page).to have_button 'Deny Request'
+  end
+
+  scenario 'I can deny a booking request' do
+    request_space
+    click_button 'Log Out'
+    sign_in
+    click_button 'Approve Request'
+    request = Booking.last
+    expect(request.approved).to eq true
+  end
 end

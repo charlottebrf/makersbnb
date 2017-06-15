@@ -6,7 +6,7 @@
 
     <ul>
       <% @bookings_pending_approval.each do |booking| %>
-        <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %></li>
+        <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %><button class="approve" id="<%= booking[:id] %>">Approve Request</button><button class="deny" id="<%= booking[:id] %>">Deny Request</button></li>
       <% end %>
     </ul>
   
