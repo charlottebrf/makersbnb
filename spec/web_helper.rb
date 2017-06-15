@@ -39,3 +39,12 @@ def incorrect_password_verification(name = 'Jenny', username = 'wemmm',
   fill_in 'password_confirmation', with: password_confirmation
   click_button 'submit'
 end
+
+def request_space_booking
+  sign_up
+  new_space
+  visit '/spaces'
+  within 'li#1'
+  fill_in 'date', with: '18/06/2017'
+  click_button 'request_space'
+end
