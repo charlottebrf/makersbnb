@@ -81,7 +81,6 @@ class Makersbnb < Sinatra::Base
 
   post '/request/approve/:booking_id' do
     booking = Booking.get(params[:booking_id])
-    p booking
     booking.approved = true
     booking.save
   end
