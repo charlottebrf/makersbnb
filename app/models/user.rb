@@ -32,4 +32,8 @@ class User
       nil
     end
   end
+
+  def check_pending_bookings
+    Booking.all(approved: false)
+  end
 end

@@ -3,6 +3,8 @@
   <form action="/sign_out" method="post">
     <input type="submit" value="Log Out">
   </form>
+
+    <%= p @bookings_pending_approval %>
 <% else %>
   <p>Please sign in...</p>
   <form action="/sign_in" method="post">

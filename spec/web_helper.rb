@@ -39,4 +39,3 @@ def request_space
   within 'li#1'
   click_button 'request_space'
 end
-
