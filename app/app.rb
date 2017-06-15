@@ -77,10 +77,17 @@ class Makersbnb < Sinatra::Base
 
   post '/bookings/new' do
     current_user
-    Booking.create(user_id: @current_user.id,
-                   space_id: params[:requested_space_id])
+    this_booking = Booking.create(user_id: @current_user.id,
+                                  space_id: params[:requested_space_id])
     if params[:date] != ''
-      session[:date] = params[:date]
+      this_booked_date = Bookeddate.create(date: params[:date])
+      this_booked_date.bookings << this_booking
+      this_booked_date.save
+      this_booking.bookeddates  << this_booked_date
+      this_booking.save
+      #BookeddateBooking.create(bookeddate: this_booked_date, booking: this_booking)
+      p BookeddateBooking.all
+      p Bookeddate.all
       redirect '/home'
     else
       @user = current_user

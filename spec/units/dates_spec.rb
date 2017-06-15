@@ -1,8 +1,6 @@
-describe Booked_Date do
-
+describe Bookeddate do
   it 'Creates a new entry' do
-    Booked_Date.create("01/01/2018")
-    expect(Booked_Date.first).to eq "01/01/2018"
+    Bookeddate.create(date: '01/01/2018')
+    expect(Bookeddate.first.format_date).to eq '01/01/2018'
   end
-
 end

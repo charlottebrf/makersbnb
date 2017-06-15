@@ -61,8 +61,7 @@ feature 'Booking Spaces' do
 feature 'Adding dates to spaces' do
   scenario 'I can see a date field' do
     request_space_booking
-    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
-                                  for 18/06/2017'
+    expect(page).to have_content '18/06/2017'
   end
 
   scenario 'I can\'t request a space without selecting a date' do
@@ -74,12 +73,11 @@ feature 'Adding dates to spaces' do
     expect(page).to have_content 'You must select a date to make a booking'
   end
 
-  scenario 'I can see my requested dates when I log out and log in' do
+  scenario 'I can see my requested date when I log out and log in' do
     request_space_booking
     click_button 'Log Out'
     sign_in
-    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
-                                  for 18/06/2017'
+    expect(page).to have_content '18/06/2017'
   end
 end
 end

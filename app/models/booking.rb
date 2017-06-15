@@ -8,4 +8,5 @@ class Booking
   property :user_id,  Integer
   property :space_id, Integer
   property :approved, Boolean, default: false
+  has n, :bookeddates, through: Resource
 end
