@@ -76,7 +76,8 @@ class Makersbnb < Sinatra::Base
     else
       @user = current_user
       flash.now[:notice] = 'You must select a date to make a booking'
-      erb :'users/home'
+      @spaces = Space.all
+      erb :'spaces/spaces_list'
     end
   end
 
