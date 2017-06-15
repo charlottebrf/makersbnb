@@ -51,7 +51,7 @@ class Makersbnb < Sinatra::Base
       end
     end
     @user = current_user
-    @bookings_pending_approval = @user.check_pending_bookings
+    @bookings_pending_approval = @user.check_pending_bookings if @user
     erb :'users/home'
   end
 

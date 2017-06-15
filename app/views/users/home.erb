@@ -4,7 +4,9 @@
     <input type="submit" value="Log Out">
   </form>
 
-    <%= p @bookings_pending_approval %>
+    <!-- <% @bookings_pending_approval.each do |booking| %>
+    <p>Approval pending: <%= booking.approved %></p>
+    <% end %> -->
 <% else %>
   <p>Please sign in...</p>
   <form action="/sign_in" method="post">
@@ -19,7 +21,7 @@
 <% end %>
 
 <% if @requested_spaces %>
-  <p>You Have Requested: 
+  <p>You Have Requested:
 <ul>
   <% @requested_spaces.each do |space| %>
     <li class="space" id="<%=space.id%>">
@@ -31,5 +33,6 @@
       <br>
     </li>
   <% end %>
+  
 </ul>
 <%end%>
