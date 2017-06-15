@@ -1,11 +1,13 @@
 ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative './datamapper_setup'
 
 # This is the controller for Makersbnb
 class Makersbnb < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   helpers do
     def current_user
@@ -68,8 +70,14 @@ class Makersbnb < Sinatra::Base
 
   post '/bookings/new' do
     session[:space_id] = params[:requested_space_id]
-    session[:date] = params[:date]
-    redirect '/home'
+    if params[:date] != ''
+      session[:date] = params[:date]
+      redirect '/home'
+    else
+      @user = current_user
+      flash.now[:notice] = 'You must select a date to make a booking'
+      erb :'users/home'
+    end
   end
 
   run! if $PROGRAM_NAME == __FILE__

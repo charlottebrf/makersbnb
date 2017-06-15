@@ -37,6 +37,7 @@ feature 'Booking Spaces' do
     sign_up
     visit '/spaces'
     within 'li#1'
+    fill_in 'date', with: '18/06/2017'
     click_button 'request_space'
     expect(page).to have_content 'You Have Requested Amazingly Romantic Shed'
   end
@@ -51,6 +52,15 @@ feature 'Adding dates to spaces' do
     click_button 'request_space'
     expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
                                   for 18/06/2017'
+  end
+
+  scenario 'I can\'t request a space without selecting a date' do
+    sign_up
+    new_space
+    visit '/spaces'
+    within 'li#1'
+    click_button 'request_space'
+    expect(page).to have_content 'You must select a date to make a booking'
   end
 end
 end
