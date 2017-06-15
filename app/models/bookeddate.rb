@@ -3,7 +3,6 @@ class Bookeddate
 
   property :id, Serial
   property :date, Date
-  property :booking_id, Integer
 
   has n, :bookings, through: Resource
 

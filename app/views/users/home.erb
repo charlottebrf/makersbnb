@@ -45,6 +45,15 @@
 <ul>
   <% @requested_spaces.each do |space| %>
     <li class="space" id="<%=space.id%>">
+      <% something = @bookings.select do |booking| %>
+        <%booking.space_id == space.id %>
+      <%end%>
+      <%  anotherthing = @booking_date_join.map do |join| %>
+       <%   join.booking_id == something.id %>
+      <%end%>
+      <% @requested_dates.each do |date| %>
+      <%  date.id == anotherthing.any %>
+      <%end %>
       <h2><%=space.name%></h2>
       <br>
       <%=space.description%>

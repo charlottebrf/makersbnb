@@ -46,13 +46,17 @@ class Makersbnb < Sinatra::Base
 
   get '/home' do
     if Booking.all && Space.all && current_user
-      @requested_spaces = Array.new
-      bookings = Booking.all(user_id: @current_user.id)
-      bookings.each do |booking|
+      @requested_spaces = []
+      @bookings = Booking.all(user_id: @current_user.id)
+      @bookings.each do |booking|
         @requested_spaces << Space.first(id: booking.space_id)
+        @booking_date_join = BookeddateBooking.all(booking_id: booking.id)
+        @booking_date_join.each do |booking_date|
+          @requested_dates = Bookeddate.all(id: booking_date.bookeddate_id)
+        end
       end
     end
-    @requested_date  = session[:date]
+    # @requested_date  = session[:date]
     @user = current_user
     @bookings_pending_approval = @user.gather_info_for_bookings if @user
     erb :'users/home'
@@ -85,9 +89,7 @@ class Makersbnb < Sinatra::Base
       this_booked_date.save
       this_booking.bookeddates  << this_booked_date
       this_booking.save
-      #BookeddateBooking.create(bookeddate: this_booked_date, booking: this_booking)
-      p BookeddateBooking.all
-      p Bookeddate.all
+      # BookeddateBooking.create(bookeddate: this_booked_date, booking: this_booking)
       redirect '/home'
     else
       @user = current_user
