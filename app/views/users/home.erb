@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Makers BnB</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.approve').click(function(){
+          var requestID = $(this).attr('id')
+          $.post('/request/approve/' + requestID)
+        });
+      });
+    </script>
+  </head>
+  <body>
+
 <% if @user %>
   <p><%="Hello, #{@user.name}!"%></p>
   <form action="/sign_out" method="post">
@@ -9,7 +26,7 @@
         <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %><button class="approve" id="<%= booking[:id] %>">Approve Request</button><button class="deny" id="<%= booking[:id] %>">Deny Request</button></li>
       <% end %>
     </ul>
-  
+
 <% else %>
   <p>Please sign in...</p>
   <form action="/sign_in" method="post">
@@ -39,3 +56,6 @@
 
 </ul>
 <%end%>
+
+</body>
+</html>
