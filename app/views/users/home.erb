@@ -3,10 +3,7 @@
   <form action="/sign_out" method="post">
     <input type="submit" value="Log Out">
   </form>
-
-    <!-- <% @bookings_pending_approval.each do |booking| %>
-    <p>Approval pending: <%= booking.approved %></p>
-    <% end %> -->
+  
 <% else %>
   <p>Please sign in...</p>
   <form action="/sign_in" method="post">
@@ -33,6 +30,6 @@
       <br>
     </li>
   <% end %>
-  
+
 </ul>
 <%end%>

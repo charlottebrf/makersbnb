@@ -34,6 +34,11 @@ class User
   end
 
   def check_pending_bookings
-    Booking.all(approved: false)
+    output = []
+    spaces = Space.all(owner: self.id)
+    spaces.each do |space|
+      output <<  Booking.all(space_id: space.id)
+    end
+    p output
   end
 end
