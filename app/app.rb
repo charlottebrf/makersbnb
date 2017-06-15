@@ -45,9 +45,16 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/home' do
-    @requested_space = Space.get(session[:space_id])
+    if Booking.all && Space.all && current_user
+      @requested_spaces = Array.new
+      bookings = Booking.all(user_id: @current_user.id)
+      bookings.each do |booking|
+        @requested_spaces << Space.first(id: booking.space_id)
+      end
+    end
     @requested_date  = session[:date]
     @user = current_user
+    @bookings_pending_approval = @user.gather_info_for_bookings if @user
     erb :'users/home'
   end
 
@@ -69,7 +76,9 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/bookings/new' do
-    session[:space_id] = params[:requested_space_id]
+    current_user
+    Booking.create(user_id: @current_user.id,
+                   space_id: params[:requested_space_id])
     if params[:date] != ''
       session[:date] = params[:date]
       redirect '/home'
@@ -79,6 +88,12 @@ class Makersbnb < Sinatra::Base
       @spaces = Space.all
       erb :'spaces/spaces_list'
     end
+  end
+
+  post '/request/approve/:booking_id' do
+    booking = Booking.get(params[:booking_id])
+    booking.approved = true
+    booking.save
   end
 
   run! if $PROGRAM_NAME == __FILE__

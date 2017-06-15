@@ -32,4 +32,32 @@ class User
       nil
     end
   end
+
+  def gather_info_for_bookings
+    to_confirm = check_pending_bookings
+    bookings = Array.new
+    to_confirm.each do |booking|
+      booking = { id: booking.id, requester: User.get(booking.user_id), space: Space.get(booking.space_id) }
+      bookings << booking
+    end
+    bookings
+  end
+
+  private
+
+  def check_pending_bookings
+    to_confirm = Array.new
+    bookings = Array.new
+    spaces = Space.all(owner: self.id)
+    spaces.each do |space|
+      bookings << Booking.all(space_id: space.id)
+    end
+    bookings.each do |sub_array|
+      sub_array.each do |booking|
+        to_confirm << booking unless booking.approved
+      end
+    end
+    to_confirm
+  end
+
 end
