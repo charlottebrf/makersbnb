@@ -36,6 +36,7 @@ def request_space
   sign_up('Dave', 'dave')
   visit '/spaces'
   within 'li#1'
+  fill_in 'date', with: '18/06/2017'
   click_button 'request_space'
 end
 
