@@ -22,7 +22,7 @@ feature "Listing Spaces" do
       expect(Space.last.name).to eq('Maldives')
     end
 
-    scenario "I can add a space to a database" do
+    scenario "I can add multiple spaces" do
       new_space("Maldives")
       new_space("Room 101")
       expect(page).to have_content('Maldives')
@@ -32,7 +32,6 @@ feature "Listing Spaces" do
 end
 
 feature 'Booking Spaces' do
-
   scenario 'I can request a space for one night' do
     request_space
     expect(page).to have_content 'You Have Requested: Amazingly Romantic Shed'
@@ -59,14 +58,28 @@ feature 'Booking Spaces' do
     expect(page).to have_button 'Deny Request'
   end
 
-  # scenario 'I can deny a booking request' do
-  #   request_space
-  #   click_button 'Log Out'
-  #   sign_in
-  #   expect(page).to have_button 'Approve Request'
-  #   click_button ''
-  #   sleep(10)
-  #   p Booking.get(2)
-  #   # expect(request.approved).to eq true
-  # end
+feature 'Adding dates to spaces' do
+  scenario 'I can see a date field' do
+    request_space_booking
+    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
+                                  for 18/06/2017'
+  end
+
+  scenario 'I can\'t request a space without selecting a date' do
+    sign_up
+    new_space
+    visit '/spaces'
+    within 'li#1'
+    click_button 'request_space'
+    expect(page).to have_content 'You must select a date to make a booking'
+  end
+
+  scenario 'I can see my requested dates when I log out and log in' do
+    request_space_booking
+    click_button 'Log Out'
+    sign_in
+    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
+                                  for 18/06/2017'
+  end
+end
 end

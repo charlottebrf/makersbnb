@@ -19,7 +19,6 @@ def sign_up(name = 'Jenny', username = 'wemmm',
   fill_in 'password', with: password
   fill_in 'password_confirmation', with: password_confirmation
   click_button 'submit'
-
 end
 
 def sign_in(username = 'wemmm', password = 'password')
@@ -37,5 +36,27 @@ def request_space
   sign_up('Dave', 'dave')
   visit '/spaces'
   within 'li#1'
+  click_button 'request_space'
+end
+
+def incorrect_password_verification(name = 'Jenny', username = 'wemmm',
+            email = 'emails@email.com',
+            password = 'password', password_confirmation = 'wasspord')
+  visit '/signup'
+  fill_in 'name', with: name
+  fill_in 'username', with: username
+  fill_in 'email', with: email
+  fill_in 'password', with: password
+  fill_in 'password_confirmation', with: password_confirmation
+  click_button 'submit'
+end
+
+def request_space_booking
+  sign_up
+  new_space
+  visit '/spaces'
+  within 'li#1'
+  fill_in 'date', with: '18/06/2017'
+
   click_button 'request_space'
 end
