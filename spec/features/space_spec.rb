@@ -32,7 +32,6 @@ feature "Listing Spaces" do
 end
 
 feature 'Booking Spaces' do
-
   scenario 'I can request a space for one night' do
     new_space
     sign_up
@@ -43,13 +42,15 @@ feature 'Booking Spaces' do
   end
 
 feature 'Adding dates to spaces' do
-
   scenario 'I can see a date field' do
     sign_up
+    new_space
     visit '/spaces'
-    click_button 'make_new_space'
-    expect(page).to have_field 'date'
+    within 'li#1'
+    fill_in 'date', with: '18/06/2017'
+    click_button 'request_space'
+    expect(page).to have_content 'You Have Requested Amazingly Romantic Shed
+                                  for 18/06/2017'
   end
 end
-
 end

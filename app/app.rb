@@ -44,6 +44,7 @@ class Makersbnb < Sinatra::Base
 
   get '/home' do
     @requested_space = Space.get(session[:space_id])
+    @requested_date  = session[:date]
     @user = current_user
     erb :'users/home'
   end
@@ -67,6 +68,7 @@ class Makersbnb < Sinatra::Base
 
   post '/bookings/new' do
     session[:space_id] = params[:requested_space_id]
+    session[:date] = params[:date]
     redirect '/home'
   end
 
