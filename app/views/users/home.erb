@@ -10,6 +10,10 @@
           var requestID = $(this).attr('id');
           $.post('/request/approve/' + requestID);
         });
+          $('.deny').click(function() {
+              var requestID = $(this).attr('id');
+              $.post('/request/deny/' + requestID);
+          });
       });
     </script>
   </head>

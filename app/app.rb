@@ -95,8 +95,14 @@ class Makersbnb < Sinatra::Base
 
   post '/request/approve/:booking_id' do
     booking = Booking.get(params[:booking_id])
-    booking.approved = true
-    booking.save
+    booking.status = 'approved'
+    p booking.save
+  end
+
+  post '/request/deny/:booking_id' do
+    booking = Booking.get(params[:booking_id])
+    booking.status = 'denied'
+    p booking.save
   end
 
   run! if $PROGRAM_NAME == __FILE__

@@ -74,10 +74,12 @@ end
     fill_in 'description', with: "It's ace!"
     fill_in 'price', with: 200
     click_button('submit')
+    fill_in 'date', with: '08/01/1935'
     click_button('Request Space')
     click_button('Approve Request')
+    sleep(1)
     request = Booking.last
-    expect(request.approved).to eq "Approved"
+    expect(request.status).to eq 'approved'
   end
 
   scenario 'Requests that are denied... are denied!', :js => true do
@@ -95,9 +97,11 @@ end
     fill_in 'description', with: "It's ace!"
     fill_in 'price', with: 200
     click_button('submit')
+    fill_in 'date', with: '08/01/1935'
     click_button('Request Space')
     click_button('Deny Request')
+    sleep(1)
     request = Booking.last
-    expect(request.approved).to eq "Denied"
+    expect(request.status).to eq 'denied'
   end
 end
