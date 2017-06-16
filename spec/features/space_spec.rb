@@ -58,6 +58,17 @@ feature 'Booking Spaces' do
     expect(page).to have_button 'Deny Request'
   end
 
+  # Following 2 tests are excluded due to feature freeze
+  xscenario 'I can\'t double book a space' do
+    request_space_booking
+    request_space_booking
+    expect(page).to have_content 'Date already taken!'
+  end
+
+  xscenario 'Does not add duplicate booking to database' do
+    expect { 2.times { request_space_booking } }.not_to change { Booking.all.length }
+  end
+
 feature 'Adding dates to spaces' do
   scenario 'I can see a date field' do
     request_space_booking
