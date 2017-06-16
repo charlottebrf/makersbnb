@@ -43,15 +43,15 @@
 <% if @requested_spaces %>
   <p>You Have Requested:
 <ul>
-  <% @requested_spaces.each do |space| %>
-    <li class="space" id="<%=space.id%>">
-      <h2><%=space.name%></h2>
+  <% @requested_spaces.each do |requested_space| %>
+    <li class="space" id="<%=requested_space[:space].id%>">
+      <h2><%=requested_space[:space].name%></h2>
       <br>
-      <%=space.description%>
+      <%=requested_space[:space].description%>
       <br>
-      <%="£#{space.price} per night" %>
+      <%="£#{requested_space[:space].price} per night" %>
       <br>
-      for <%= @requested_date%><br>
+      for <%= requested_space[:date].format_date%><br>
     </li>
   <% end %>
 

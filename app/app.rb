@@ -47,16 +47,13 @@ class Makersbnb < Sinatra::Base
   get '/home' do
     if Booking.all && Space.all && current_user
       @requested_spaces = []
-      @requested_dates = []
       @bookings = Booking.all(user_id: @current_user.id)
       @bookings.each do |booking|
-        @requested_spaces << Space.first(id: booking.space_id)
-        @requested_dates = Bookeddate.all(id: booking.date_id)
+        @requested_spaces << {space: Space.first(id: booking.space_id),
+                           booking: booking,
+                           date: Bookeddate.first(id: booking.date_id)}
       end
-      p "-------1-------"
-      p @requested_dates
     end
-    # @requested_date  = session[:date]
     @user = current_user
     @bookings_pending_approval = @user.gather_info_for_bookings if @user
     erb :'users/home'
