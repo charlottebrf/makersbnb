@@ -54,4 +54,4 @@ From day one we have tried to make sure that we are communicating well as a team
 
 - Jenny has not yet thought of any matters.
 - Simon can't format markdown properly.
-
+![Team Hero Retro](https://github.com/michaelbjacobson/makersbnb/blob/master/IMG_20170616_181659.png)
