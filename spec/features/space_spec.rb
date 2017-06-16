@@ -76,8 +76,28 @@ end
     click_button('submit')
     click_button('Request Space')
     click_button('Approve Request')
-    sleep(5)
     request = Booking.last
-    expect(request.approved).to eq true
+    expect(request.approved).to eq "Approved"
+  end
+
+  scenario 'Requests that are denied... are denied!', :js => true do
+    visit('/home')
+    click_button('Sign Up')
+    fill_in 'name', with: 'Michael'
+    fill_in 'username', with: 'mikejacobson'
+    fill_in 'email', with: 'michael.jacobson89@gmail.com'
+    fill_in 'password', with: 'password'
+    fill_in 'password_confirmation', with: 'password'
+    click_button('submit')
+    click_button('View Spaces')
+    click_button('Make New Space')
+    fill_in 'name', with: "Mike's Space"
+    fill_in 'description', with: "It's ace!"
+    fill_in 'price', with: 200
+    click_button('submit')
+    click_button('Request Space')
+    click_button('Deny Request')
+    request = Booking.last
+    expect(request.approved).to eq "Denied"
   end
 end
