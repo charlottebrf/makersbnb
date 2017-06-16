@@ -1,55 +1,17 @@
-**Makersbnb User Stories**
+*What is it?
 
-```
-As a person,
-So I can become a user,
-I want to sign-up.
-```
+It is a website that is similar to (yet legally distinct from) AirBnB.
 
-```
-As a user,
-So I can make dat dollar,
-I want to list a new space.
-```
+*How Does it Work?
 
-```
-As a user,
-So I can maximise profit,
-I want to list multiple spaces.
-```
+- Clone this repository
+- Navigate to the newly cloned directory via your command line
+- ```rackup```
+- Visit localhost:[whichever port you racked up to]
+- Enjoy pretending to rent strange and whimsical locations for exactly one night
 
-```
-As a user,
-So people can identify it,
-I want to name my space.
-```
+*Our Team 
 
-```
-As a user,
-So I can inform users what it's like,
-I want to provide a short description for my space.
-```
+*Our Approach
 
-```
-As a user,
-So I can show people how much it costs,
-I want to provide a price per night for my space.
-```
-
-```
-As a user,
-So I can control when bookings are made,
-I want to list available dates for my space.
-```
-
-```
-As a user,
-So I have somewhere to stay,
-I want to request a space for one night.
-```
-
-```
-As a user,
-So I can screen my guests,
-I want to approve requests to stay at my space.
-```
+*Other Matters
