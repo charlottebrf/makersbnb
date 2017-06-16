@@ -13,9 +13,13 @@ It is a website that is similar to (yet legally distinct from) AirBnB.
 
 ## Who is Team Hero?
 [Charlotte Fereday](https://github.com/charlottebrf)
+
 [Simon Ashbery](https://github.com/SiAshbery)
+
 [Aaron Rodrigues](https://github.com/AaronRodrigues)
+
 [Michael Jacobson](https://github.com/michaelbjacobson)
+
 [Jenny Wem](https://github.com/wemmm)
 
 ## The Team Hero Charter
