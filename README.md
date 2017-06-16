@@ -45,4 +45,9 @@ From day one we have tried to make sure that we are communicating well as a team
 
 ![A lovely collage](https://github.com/michaelbjacobson/makersbnb/blob/writing-the-readme/beautifulpeople.png)
 
+## Known Issues/TODOs
+
+- Spaces can be double booked. The implementation of bookings is robust enough that we think adding it would be relatively straightfoward, but we were unable to add the feature before our feature freeze on Friday.
+- Users can book their own spaces.
+
 ## Other Matters
