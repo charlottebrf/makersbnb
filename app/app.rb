@@ -47,14 +47,14 @@ class Makersbnb < Sinatra::Base
   get '/home' do
     if Booking.all && Space.all && current_user
       @requested_spaces = []
+      @requested_dates = []
       @bookings = Booking.all(user_id: @current_user.id)
       @bookings.each do |booking|
         @requested_spaces << Space.first(id: booking.space_id)
-        @booking_date_join = BookeddateBooking.all(booking_id: booking.id)
-        @booking_date_join.each do |booking_date|
-          @requested_dates = Bookeddate.all(id: booking_date.bookeddate_id)
-        end
+        @requested_dates = Bookeddate.all(id: booking.date_id)
       end
+      p "-------1-------"
+      p @requested_dates
     end
     # @requested_date  = session[:date]
     @user = current_user
@@ -81,9 +81,13 @@ class Makersbnb < Sinatra::Base
 
   post '/bookings/new' do
     current_user
-    this_booking = Booking.create(user_id: @current_user.id,
-                                  space_id: params[:requested_space_id])
     if params[:date] != ''
+
+      this_booked_date = Bookeddate.create(date: params[:date])
+      this_booking = Booking.create(user_id: @current_user.id,
+                                    space_id: params[:requested_space_id],
+                                    date_id: this_booked_date.id)
+
       this_booked_date = Bookeddate.create(date: params[:date])
       this_booked_date.bookings << this_booking
       this_booked_date.save
