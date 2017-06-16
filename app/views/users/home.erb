@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Makers BnB</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-
-        $('.approve').click(function(){
-          var requestID = $(this).attr('id');
-          $.post('/request/approve/' + requestID, function() {
-              $('div#requests_sent').load(location.href + ' div#requests_sent' + ">*", "");
-              $('div#requests_received').load(location.href + ' div#requests_received' + ">*", "");
-          });
-        });
-
-          $('.deny').click(function() {
-              var requestID = $(this).attr('id');
-              $.post('/request/deny/' + requestID, function() {
-                  $('div#requests_sent').load(location.href + ' div#requests_sent' + ">*", "");
-                  $('div#requests_received').load(location.href + ' div#requests_received' + ">*", "");
-              });
-          });
-
-      });
-    </script>
-  </head>
-  <body>
-
 <% if @user %>
   <p><%="Hello, #{@user.name}!"%></p>
   <form action="/sign_out" method="post">
     <input type="submit" value="Log Out">
   </form>
-  <form action="/spaces" method="get">
-    <input type="submit" value="View Spaces">
-  </form>
-
-   <div id="requests_received">
-      <ul>
-        <% @bookings_pending_approval.each do |booking| %>
-          <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %><button class="approve" id="<%= booking[:id] %>">Approve Request</button><button class="deny" id="<%= booking[:id] %>">Deny Request</button></li>
-        <% end %>
-      </ul>
-   </div>
-
 <% else %>
   <p>Please sign in...</p>
   <form action="/sign_in" method="post">
@@ -58,25 +16,6 @@
     </form>
 <% end %>
 
-<% if @requested_spaces %>
-  <div id="requests_sent">
-    <p>You Have Requested: </p>
-    <ul>
-    <% @requested_spaces.each do |space| %>
-      <li class="space" id="<%=space[1].id%>">
-        <h3><%=space[0].name%></h3>
-        <!--<br>-->
-        <!--<%=space[0].description%>-->
-        <!--<br>-->
-        <!--<%="£#{space[0].price} per night" %>-->
-        <!--<br>-->
-        for <%= @requested_date%><br>
-        <p>Your request for <%= space[0].name %> <%= space[1].check_status %></p>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-<%end%>
-
-</body>
-</html>
+<% if @requested_space %>
+  <p>You Have Requested <%= @requested_space.name%></p>
+<% end %>
