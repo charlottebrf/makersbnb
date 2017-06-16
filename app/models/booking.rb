@@ -1,6 +1,4 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
-
+# understands information about short-term rent
 class Booking
   include DataMapper::Resource
 
@@ -9,5 +7,4 @@ class Booking
   property :space_id, Integer
   property :date_id, Integer
   property :approved, Boolean, default: false
-  has n, :bookeddates, through: Resource
 end

@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Makers BnB</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('.approve').click(function(){
-          var requestID = $(this).attr('id');
-          $.post('/request/approve/' + requestID);
-        });
-      });
-    </script>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Makers BnB</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('.approve').click(function(){
+      var requestID = $(this).attr('id');
+      $.post('/request/approve/' + requestID);
+    });
+  });
+  </script>
+</head>
+<body>
 
 <% if @user %>
-  <p><%="Hello, #{@user.name}!"%></p>
-  <form action="/sign_out" method="post">
-    <input type="submit" value="Log Out">
-  </form>
+<p><%="Hello, #{@user.name}!"%></p>
+<form action="/sign_out" method="post">
+  <input type="submit" value="Log Out">
+</form>
 
-    <ul>
-      <% @bookings_pending_approval.each do |booking| %>
-        <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %><button class="approve" id="<%= booking[:id] %>">Approve Request</button><button class="deny" id="<%= booking[:id] %>">Deny Request</button></li>
-      <% end %>
-    </ul>
+<ul>
+  <% @bookings_pending_approval.each do |booking| %>
+  <li><%= "#{booking[:requester].name} has requested #{booking[:space].name}" %><button class="approve" id="<%= booking[:id] %>">Approve Request</button><button class="deny" id="<%= booking[:id] %>">Deny Request</button></li>
+  <% end %>
+</ul>
 
 <% else %>
-  <p>Please sign in...</p>
-  <form action="/sign_in" method="post">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <input type="submit" value="Log In">
-  </form>
-    <p>or...</p>
-  <form action="/signup" method="get">
-      <input type="submit" value="Sign Up">
-    </form>
+<p>Please sign in...</p>
+<form action="/sign_in" method="post">
+  <input type="text" name="username">
+  <input type="password" name="password">
+  <input type="submit" value="Log In">
+</form>
+<p>or...</p>
+<form action="/signup" method="get">
+  <input type="submit" value="Sign Up">
+</form>
 <% end %>
 
+<!-- Returns requested booking information  -->
 <% if @requested_spaces %>
-  <p>You Have Requested:
-<ul>
-  <% @requested_spaces.each do |requested_space| %>
+<p>You Have Requested:
+  <ul>
+    <% @requested_spaces.each do |requested_space| %>
     <li class="space" id="<%=requested_space[:space].id%>">
       <h2><%=requested_space[:space].name%></h2>
       <br>
@@ -51,12 +52,10 @@
       <br>
       <%="£#{requested_space[:space].price} per night" %>
       <br>
-      for <%= requested_space[:date].format_date%><br>
+      for <%=requested_space[:date].format_date%><br>
     </li>
-  <% end %>
-
-</ul>
-<%end%>
-
+    <% end %>
+  </ul>
+  <%end%>
 </body>
 </html>

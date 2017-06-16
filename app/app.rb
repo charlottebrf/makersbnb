@@ -45,13 +45,14 @@ class Makersbnb < Sinatra::Base
   end
 
   get '/home' do
+    # Collects information for booking and requested dates in a hash
     if Booking.all && Space.all && current_user
       @requested_spaces = []
       @bookings = Booking.all(user_id: @current_user.id)
       @bookings.each do |booking|
-        @requested_spaces << {space: Space.first(id: booking.space_id),
-                           booking: booking,
-                           date: Bookeddate.first(id: booking.date_id)}
+        @requested_spaces << { space: Space.first(id: booking.space_id),
+                               booking: booking,
+                               date: Bookeddate.first(id: booking.date_id) }
       end
     end
     @user = current_user
@@ -79,18 +80,10 @@ class Makersbnb < Sinatra::Base
   post '/bookings/new' do
     current_user
     if params[:date] != ''
-
       this_booked_date = Bookeddate.create(date: params[:date])
-      this_booking = Booking.create(user_id: @current_user.id,
-                                    space_id: params[:requested_space_id],
-                                    date_id: this_booked_date.id)
-
-      this_booked_date = Bookeddate.create(date: params[:date])
-      this_booked_date.bookings << this_booking
-      this_booked_date.save
-      this_booking.bookeddates  << this_booked_date
-      this_booking.save
-      # BookeddateBooking.create(bookeddate: this_booked_date, booking: this_booking)
+      Booking.create(user_id: @current_user.id,
+                     space_id: params[:requested_space_id],
+                     date_id: this_booked_date.id)
       redirect '/home'
     else
       @user = current_user
