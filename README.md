@@ -47,7 +47,11 @@ From day one we have tried to make sure that we are communicating well as a team
 
 ## Known Issues/TODOs
 
-- Spaces can be double booked. The implementation of bookings is robust enough that we think adding it would be relatively straightfoward, but we were unable to add the feature before our feature freeze on Friday.
+- Spaces can be double booked. The implementation of bookings is robust enough that we think adding it would be relatively straightfoward, but we were unable to add the feature before our feature freeze on Friday. There are currently excluded test that anticipate this feature.
 - Users can book their own spaces.
 
 ## Other Matters
+
+- Jenny has not yet thought of any matters.
+- Simon can't format markdown properly.
+
