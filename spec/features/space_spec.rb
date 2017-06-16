@@ -107,7 +107,7 @@ feature "Approving bookings" do
     request = Booking.last
     expect(request.status).to eq 'denied'
   end
-  
+
    scenario 'Requests that are approved... are approved!', :js => true do
     visit('/home')
     click_button('Sign Up')
@@ -130,4 +130,5 @@ feature "Approving bookings" do
     request = Booking.last
     expect(request.status).to eq 'approved'
    end
+end
 end

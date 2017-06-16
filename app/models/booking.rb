@@ -5,7 +5,7 @@ class Booking
   property :id,       Serial
   property :user_id,  Integer
   property :space_id, Integer
-  property :date_id, Integer
+  property :date_id, Integer, required: true
   property :approved, Boolean, default: false
   property :status, String, default: 'pending'
 
