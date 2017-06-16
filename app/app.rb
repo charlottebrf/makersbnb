@@ -53,7 +53,7 @@ class Makersbnb < Sinatra::Base
       @requested_spaces = Array.new
       bookings = Booking.all(user_id: @current_user.id)
       bookings.each do |booking|
-        @requested_spaces << Space.first(id: booking.space_id)
+        @requested_spaces << [Space.first(id: booking.space_id), booking] 
       end
     end
     @requested_date  = session[:date]
