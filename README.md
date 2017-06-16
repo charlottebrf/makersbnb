@@ -41,4 +41,8 @@ We adhere to Ruby community style guidelines
 
 ## Our Approach
 
+From day one we have tried to make sure that we are communicating well as a team, and this informed our approach to the challenge. We examined the specifications as a group, worked out user stories and then assigned subgroups and a feature to be worked on. We chose to use a Ruby/Sinatra backend and Javascript/JQuery for frontend features as we felt like this was a good balance of technologies that we are familiar with and newer things that we would like to improve at.
+
+![A lovely collage](https://github.com/michaelbjacobson/makersbnb/blob/writing-the-readme/beautifulpeople.png)
+
 ## Other Matters
