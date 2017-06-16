@@ -54,7 +54,7 @@ class User
     end
     bookings.each do |sub_array|
       sub_array.each do |booking|
-        to_confirm << booking unless booking.approved
+        to_confirm << booking if booking.status == 'pending'
       end
     end
     to_confirm

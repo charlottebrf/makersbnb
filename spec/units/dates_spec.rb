@@ -4,3 +4,4 @@ describe Bookeddate do
     expect(Bookeddate.first.format_date).to eq '01/01/2018'
   end
 end
+

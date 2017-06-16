@@ -1,12 +1,20 @@
-# require 'web_helper'
-#
-# feature 'request approval' do
-#
-#   scenario 'user can see a request pending approval' do
-#     request_space
-#     click_button 'Log Out'
-#     sign_in
-#     expect(page).to have_content 'Approval pending'
-#   end
-#
-# end
+require 'web_helper'
+
+feature 'Notifying User of Request Status' do
+
+    scenario 'I can see whether my request is approved', :js => true do
+      makes_user_makes_space_makes_request_approves
+      expect(page).to have_content("Your request for Mike's Space was approved!")
+    end
+
+    scenario 'I can see whether my request is denied', :js => true do
+      makes_user_makes_space_makes_request_denies
+      expect(page).to have_content("Your request for Mike's Space was denied!")
+    end
+
+    scenario 'I can see whether my request is still pending', :js => true do
+      makes_user_makes_space_makes_request_leaves_pending
+      expect(page).to have_content("Your request for Mike's Space is pending approval!")
+    end
+
+end

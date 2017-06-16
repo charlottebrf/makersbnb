@@ -15,6 +15,10 @@ class Makersbnb < Sinatra::Base
     end
   end
 
+  before do
+    current_user
+  end
+
   get '/' do
     redirect '/home'
   end
@@ -55,6 +59,7 @@ class Makersbnb < Sinatra::Base
                                date: Bookeddate.first(id: booking.date_id) }
       end
     end
+
     @user = current_user
     @bookings_pending_approval = @user.gather_info_for_bookings if @user
     erb :'users/home'
@@ -78,7 +83,8 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/bookings/new' do
-    current_user
+    Booking.create(user_id: @current_user.id,
+                   space_id: params[:requested_space_id])
     if params[:date] != ''
       this_booked_date = Bookeddate.create(date: params[:date])
       Booking.create(user_id: @current_user.id,
@@ -95,8 +101,14 @@ class Makersbnb < Sinatra::Base
 
   post '/request/approve/:booking_id' do
     booking = Booking.get(params[:booking_id])
-    booking.approved = true
-    booking.save
+    booking.status = 'approved'
+    p booking.save
+  end
+
+  post '/request/deny/:booking_id' do
+    booking = Booking.get(params[:booking_id])
+    booking.status = 'denied'
+    p booking.save
   end
 
   run! if $PROGRAM_NAME == __FILE__
