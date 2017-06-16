@@ -121,4 +121,5 @@ def makes_user_makes_space_makes_request_leaves_pending
   click_button('submit')
   fill_in 'date', with: '08/01/1935'
   click_button('Request Space')
+  sleep(1)
 end

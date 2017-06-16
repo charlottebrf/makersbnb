@@ -56,7 +56,7 @@ class Makersbnb < Sinatra::Base
         @requested_spaces << [Space.first(id: booking.space_id), booking] 
       end
     end
-    @requested_date  = session[:date]
+    @requested_date = session[:date]
     @user = current_user
     @bookings_pending_approval = @user.gather_info_for_bookings if @user
     erb :'users/home'
